@@ -37,8 +37,11 @@
 */
   
 #include <iostream>
-
 using namespace std;
+
+// Function Prototypes
+void print(const int* const, int);
+int* apply_all(int*, int, int*, int);
 
 int main() {
     const size_t array1_size {5};
@@ -62,5 +65,26 @@ int main() {
     cout << endl;
 
     return 0;
+
+}
+
+// Prints array of designated size
+void print(const int* const array, int size) {
+    for (int i{0}; i < size; ++i) {
+		cout << (i == 0 ? '[': ' ') << array[i] << (i == (size - 1) ? "]\n" : "");
+    }	
+}
+
+// Allocates a new array of integers whose size is the product of the 2 array sizes
+int* apply_all(int* array1, int size1, int* array2, int size2) {
+	int* new_array = new int[size1*size2];
+
+	for (int i{0}; i < size2; ++i) {	// Loop through array2
+		for (int j{0}; j < size1; ++j) {  	// Loop through array1
+			new_array[(i * size1) + j] = array2[i] * array1[j];
+		}
+	}
+
+	return new_array;
 }
 
