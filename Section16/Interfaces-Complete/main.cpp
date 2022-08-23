@@ -81,10 +81,10 @@ int main() {
     print(*dog);
     
     Account *p1 = new Account();
-    std::cout << *p1<< std::endl;
+    std::cout << *p1 << std::endl;
         
     Account *p2 = new Checking();
-    std::cout << *p2<< std::endl;  
+    std::cout << *p2 << std::endl;  
 
 //    Account a;
 //    std::cout << a<< std::endl;
