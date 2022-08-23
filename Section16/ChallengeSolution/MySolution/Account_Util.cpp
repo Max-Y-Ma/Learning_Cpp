@@ -1,6 +1,37 @@
 #include <iostream>
 #include "Account_Util.h"
 
+// Displays any account objects in a vector 
+void display(const std::vector<Account*> &accounts) {
+    std::cout << "\n=== Accounts===========================================" << std::endl;
+    for (auto &element: accounts) {
+        std::cout << *element << std::endl;
+    }
+}
+
+// Deposits supplied amount to each object in the vector
+void deposit(std::vector<Account*> &accounts, double amount) {
+    std::cout << "\n=== Depositing to Accounts =================================" << std::endl;
+    for (auto &element: accounts)  {
+        if (element->deposit(amount)) 
+            std::cout << "Deposited " << amount << " to " << *element << std::endl;
+        else
+            std::cout << "Failed Deposit of " << amount << " to " << *element << std::endl;
+    }
+}
+
+// Withdraw amount from each object in the vector
+void withdraw(std::vector<Account*> &accounts, double amount) {
+    std::cout << "\n=== Withdrawing from Accounts ==============================" <<std::endl;
+    for (auto &element: accounts)  {
+        if (element->withdraw(amount)) 
+            std::cout << "Withdrew " << amount << " from " << *element << std::endl;
+        else
+            std::cout << "Failed Withdrawal of " << amount << " from " << *element << std::endl;
+    } 
+}
+
+/*
 // Displays Account objects in a  vector of Account objects 
 void display(const std::vector<Account> &accounts) {
     std::cout << "\n=== Accounts===========================================" << std::endl;
@@ -122,3 +153,4 @@ void withdraw(std::vector<Trust_Account> &accounts, double amount) {
             std::cout << "Failed Withdrawal of " << amount << " from " << acc << std::endl;
     } 
 }
+*/
