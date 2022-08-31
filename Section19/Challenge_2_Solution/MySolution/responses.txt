@@ -1,6 +1,6 @@
-ABCDE                  
-Frank                     
-ABCDE                  
+ABCDE
+Frank
+ABCDE
 Larry
 ABCAC
 Moe
