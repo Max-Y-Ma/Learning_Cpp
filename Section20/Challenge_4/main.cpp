@@ -10,9 +10,28 @@
 
 bool is_palindrome(const std::string& s)
 {
-    // You must implement this function.
-    // Since we are learning the STL - use a stack and a queue to solve the problem.
-    return false;
+    std::stack<char> stack;
+
+    // Push each character onto the stack
+    for (auto& e: s) {
+        if (std::isalpha(e))
+            stack.push(std::toupper(e));
+        else 
+            continue;
+    }
+
+    // Compare in reverse order
+    for (auto& e: s) {
+        if (!std::isalpha(e))
+            continue;
+
+        if (stack.top() == std::toupper(e))
+            stack.pop();
+        else
+            break;
+    }
+
+    return stack.empty();
 }
 
 int main()
