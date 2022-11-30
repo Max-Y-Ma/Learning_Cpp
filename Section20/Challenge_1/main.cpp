@@ -10,9 +10,33 @@
 
 bool is_palindrome(const std::string& s)
 {
-    // You must implement this function.
-    // Since we are learning the STL - use a deque to solve the problem.
-    return false;
+    /* PsuedoCode
+     * Push all elements of the string into the deque's back
+     * Pop from the back and check with string 
+     * This will compare them in reverse order 
+    */
+    
+    std::deque<char> p;
+
+    // Push all characters to back of the deque
+    for (const char& e: s) {
+        if (std::isalpha(e))
+            p.push_back(std::toupper(e));
+    }
+
+    // Pop each character from back and compare with front of string
+    for (const char& e: s) {
+        if (!std::isalpha(e))
+            continue;
+        
+        if (p.back() == std::toupper(e))
+            p.pop_back();
+        else
+            break;
+    }
+
+    // If deque is empty, we know that it was a palindrome
+    return (p.empty());
 }
 
 int main()

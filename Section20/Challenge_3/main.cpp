@@ -59,13 +59,27 @@ std::string clean_string(const std::string &s) {
 
 void part1() {
     std::map<std::string, int> words;
-    std::string line;       
+    std::string line;   
+    std::stringstream ss;    
     std::string word;   
-    std::ifstream in_file {"../words.txt"};
+    std::ifstream in_file {"./words.txt"};
     if (in_file) {
-        
-        // You implement this code
-        
+        // Read the file line by line
+        while (std::getline(in_file, line)) {
+            // Process each line
+            ss.str(line);
+            while (ss >> word) {
+                word = clean_string(word);
+                // If the word is in the map, increment its counter
+                if(words.count(word))
+                    words.at(word)++;
+                else {
+                    words.insert({word, 1});
+                }
+            }
+            ss.clear();
+        }
+
         in_file.close();
         display_words(words);
     } else {
@@ -77,12 +91,28 @@ void part1() {
 // set of line numbers in which the word appears
 void part2() {
     std::map<std::string, std::set<int>> words;
+    std::stringstream ss;
     std::string line;
     std::string word;
-    std::ifstream in_file {"../words.txt"};
+    std::ifstream in_file {"./words.txt"};
+    int linenum = 1;
     if (in_file) {
-     
-        // You implement this code
+        // Read the file line by line
+        while (std::getline(in_file, line)) {
+            // Process each line
+            ss.str(line);
+            while (ss >> word) {
+                word = clean_string(word);
+                // If the word is in the map, update its line numbers
+                if(words.count(word))
+                    (words.at(word)).insert(linenum);
+                else {
+                    words.insert({word, {linenum}});
+                }
+            }
+            ss.clear();
+            linenum++;
+        }
         
         in_file.close();
         display_words(words);
